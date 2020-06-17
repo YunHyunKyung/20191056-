@@ -16,15 +16,15 @@ def hellovar(name):
     user = txtgame.set_user(name)
     return render_template('gamestart.html', data=user)
 
-@app.route('/gamestart')
-def gamestart():
-    with open("static/save.txt", "r", encoding='utf-8') as f: 
-        data = f.read() 
-        user = json.loads(data) 
-    print(type(user)) 
-    print(user)
-    print(user['items'])
-    return"{}이 {}을 사용했습니다.".format(user["name"], user["items"][0])
+#@app.route('/gamestart')
+#def gamestart():
+#    with open("static/save.txt", "r", encoding='utf-8') as f: 
+#        data = f.read() 
+#        user = json.loads(data) 
+#    print(type(user)) 
+#    print(user)
+#    print(user['items'])
+#    return"{}이 {}을 사용했습니다.".format(user["name"], user["items"][0])
 
 @app.route('/input/<int:num>')
 def input_num(num):
@@ -40,10 +40,6 @@ def input_num(num):
             user = json.loads(data) 
             print(user['items'])
         return"{}이 {}을 사용했습니다.".format(user["name"], user["items"][0])
-
-@app.route('/py')
-def pyhtml():
-    return render_template("py.html")
 
 @app.route('/method', methods=['GET', 'POST']) 
 def method(): 
@@ -65,10 +61,10 @@ def method():
 def getinfo(): 
     # 파일 입력
     with open("static/save.txt", "r", encoding='utf-8') as file: 
-        student = file.read().split(',') # 쉽표로 잘라서 student 에 배열로 저장 
+        student = file.read().split(',') # 쉼표로 잘라서 student 에 배열로 저장 
         return '번호 : {}, 이름 : {}'.format(student[0], student[1])
 
 if __name__ == '__main__': 
-    with app.test_request_context(): 
-        print(url_for('daum'))
+#    with app.test_request_context(): 
+#        print(url_for('daum'))
     app.run(debug=True)
