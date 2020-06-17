@@ -5,7 +5,7 @@
 myenv/
 
 ## 게임 save.txt ##
-static/save.txt
+save.txt
 
 ### Code ###
 .vscode/*
