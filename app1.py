@@ -8,13 +8,23 @@ def hello():
 @app.route('/hello')
 def hellohtml(): 
     return render_template("hello.html")
-    
-@app.route('/method', methods=['GET', 'POST'])
+
+@app.route('/method', methods=['GET', 'POST']) 
 def method(): 
     if request.method == 'GET': 
-        return "GET으로 전달"
+        # args_dict = request.args.to_dict() 
+        # print(args_dict) 
+        num = request.args["num"] 
+        name = request.args.get("name") 
+        return "GET으로 전달된 데이터({}, {})".format(num, name) 
+        
     else: 
-        return "POST로 전달"
+        num = request.form["num"] 
+        name = request.form["name"] 
+        with open("static/save.txt","w", encoding='utf-8') as f: 
+            f.write("%s,%s" % (num, name)) 
+        return "POST로 전달된 데이터({}, {})".format(num, name)
+
 
 @app.route('/move/naver') 
 def naver(): 
