@@ -1,4 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for
+import txtgame
+import json
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,10 +11,35 @@ def hello():
 def hellohtml(): 
     return render_template("hello.html")
 
-@app.route('hello/<name>')
+@app.route('/hello/<name>')
 def hellovar(name):
-    txtgame.set_user(name)
-    return 'Hello, {}!'.format(name)
+    user = txtgame.set_user(name)
+    return render_template('gamestart.html', data=user)
+
+@app.route('/gamestart')
+def gamestart():
+    with open("static/save.txt", "r", encoding='utf-8') as f: 
+        data = f.read() 
+        user = json.loads(data) 
+    print(type(user)) 
+    print(user)
+    print(user['items'])
+    return"{}이 {}을 사용했습니다.".format(user["name"], user["items"][0])
+
+@app.route('/input/<int:num>')
+def input_num(num):
+    if num == 1:
+        return "당신은 이수만의 ATM이 되었습니다. HP -5"
+    elif num == 2:
+        return "당신은 경찰서로 소환되었습니다. HP -50"
+    elif num == 3:
+        return "당신은 아무런 타격도 입지 않았습니다. HP -0"
+    elif num == 4:
+        with open("static/save.txt", "r", encoding='utf-8') as f: 
+            data = f.read() 
+            user = json.loads(data) 
+            print(user['items'])
+        return"{}이 {}을 사용했습니다.".format(user["name"], user["items"][0])
 
 @app.route('/py')
 def pyhtml():
