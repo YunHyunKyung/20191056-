@@ -1,0 +1,12 @@
+<!DOCTYPE html> 
+<html> 
+    <body> 
+        <h2>GAME START</h2> 
+        {{ data.name }}님 반갑습니다. HP {{ data.hp }}으로 게임을 시작합니다.<br><br><br>
+        길을 가다가 이수만을 만났습니다.<br><br>
+        <a href={{ url_for('input_num', num=1) }}>1. 돈을 지급한다.</a> <br>
+        <a href={{ url_for('input_num', num=2) }}>2. 일 좀 제대로 욕을 한다. </a><br>
+        <a href={{ url_for('input_num', num=3) }}>3. 그냥 지나간다. </a><br>
+        <a href={{ url_for('input_num', num=4) }}>4. 스킬/아이템 사용</a><br>
+    </body> 
+</html>
