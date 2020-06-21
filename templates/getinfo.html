@@ -1,0 +1,13 @@
+<!DOCTYPE html> 
+<html> 
+    <body> 
+        <h2>학생 정보 출력</h2> 
+        {% for i in data %} 
+        {{ loop.index }}.
+        아이디 : {{ i[0] }} <br> 
+        비밀번호 : {{ i[1] }} <br>
+        이름 : {{ i[2] }} <br> 
+        <br>
+        {% endfor %} 
+    </body> 
+</html>
