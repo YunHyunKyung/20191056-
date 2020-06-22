@@ -1,15 +1,17 @@
-<!DOCTYPE html> 
-<html> 
-    <body> 
-        <h2>KIT 웹앱 프로그래밍</h2> 
-        <form action="/login" method="POST"> 
-            <label for="fname">ID:</label><br> 
-            <input type="text" id="fname" name="id" value=""><br> 
-            <label for="fname">PW:</label><br> 
-            <input type="text" id="fname" name="pw" value=""><br>
-            <label for="lname">이름:</label><br> 
-            <input type="text" id="lname" name="name" value=""><br><br> 
-            <input type="submit" value="확인"> 
-        </form> 
-    </body> 
-</html>
+{% extends "layout.html" %} 
+{% block title %}로그인{% endblock %} 
+{% block head %} 
+    {{ super() }} 
+{% endblock %} 
+{% block content %} 
+
+<h2>KIT 웹앱 프로그래밍</h2> 
+<form action="/login" method="POST"> 
+    <label for="id">ID:</label><br> 
+    <input type="text" id="id" name="id" value=""><br> 
+    <label for="pw">PW:</label><br> 
+    <input type="password" id="pw" name="pw" value=""><br>
+    <input type="submit" value="확인"> 
+</form> 
+    
+{% endblock %}

@@ -51,7 +51,21 @@ def select_all():
     return ret
 
 #아이디로 데이터 검색하는 함수
-def select_id(id): 
+def select_id(id, pw): 
+    ret = () 
+    try: 
+        db = dbcon() 
+        c = db.cursor() 
+        setdata = (id, pw) 
+        c.execute('SELECT * FROM users WHERE id = ? AND pw = ?', setdata) 
+        ret = c.fetchone() 
+    except Exception as e: 
+        print('db error:', e) 
+    finally: 
+        db.close() 
+    return ret
+
+def check_id(id): 
     ret = () 
     try: 
         db = dbcon() 
@@ -65,8 +79,23 @@ def select_id(id):
         db.close() 
     return ret
 
+def check_name(name): 
+    ret = () 
+    try: 
+        db = dbcon() 
+        c = db.cursor() 
+        setdata = (name) 
+        c.execute('SELECT * FROM users WHERE name = ?', setdata) 
+        ret = c.fetchone() 
+    except Exception as e: 
+        print('db error:', e) 
+    finally: 
+        db.close() 
+    return ret
+
 #create_table()
 #insert_data('20191056', '2019', '윤현경')
+#insert_data('id, 'pw', 'KIT')
 #ret = select_all()
 #ret = select_id('20191056')
 #print(ret)
