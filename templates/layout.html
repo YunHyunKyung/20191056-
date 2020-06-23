@@ -18,20 +18,23 @@
   
         <!-- Links -->
             <ul class="navbar-nav">
+                {% if 'users' not in session %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('join') }}">회원가입</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">로그인</a>
+                    {% if 'users' in session %}
+                        <a class="nav-link" href="{{ url_for('logout') }}">로그아웃</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('login') }}">로그인</a>
+                    {% endif %}
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('getinfo') }}">학생정보</a>
+                    <a class="nav-link" href="{{ url_for('getinfo') }}">회원정보</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('gamestart') }}">게임</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">로그아웃</a>
                 </li>
             </ul>
         </nav>
