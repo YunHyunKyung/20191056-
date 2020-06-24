@@ -1,0 +1,16 @@
+{% extends "layout.html" %} 
+{% block title %}게임{% endblock %} 
+{% block head %} 
+    {{ super() }} 
+{% endblock %} 
+{% block content %} 
+
+    <h2>GAME</h2> 
+    {{ data.name }}님의 현재 HP : {{ data.hp }}<br><br><br>
+    집 앞에서 엑소를 만났습니다.<br><br>
+    <a href={{ url_for('input2_num', num2=1) }}>1. 돈을 지급한다.</a> <br>
+    <a href={{ url_for('input2_num', num2=2) }}>2. 일 좀 제대로 욕을 한다. </a><br>
+    <a href={{ url_for('input2_num', num2=3) }}>3. 그냥 지나간다. </a><br>
+    <a href={{ url_for('input2_num', num2=4) }}>4. 스킬/아이템 사용</a><br>
+    
+{% endblock %}

@@ -1,5 +1,5 @@
 {
-    "name": "씨",
+    "name": "dfds",
     "level": 1,
     "hp": 100,
     "items": [

@@ -3,6 +3,37 @@ import sqlite3
 def dbcon(): 
     return sqlite3.connect('mydata.db')
 
+#txtuser 테이블 생성
+def create_usertable():
+    try:
+        query='''
+        CREATE TABLE "txtuser"(
+            "name" varchar(50),
+            "hp" int default 100
+        )
+        '''
+        db2 = dbcon()
+        d = db2.cursor
+        d.execute(query)
+        db2.commit()
+    except Exception as e:
+        print('db2 error:', e)
+    finally:
+        db2.close()
+
+#txtuser 데이터 입력
+def insert_data2(name, hp): 
+    try: 
+        db2 = dbcon() 
+        d = db2.cursor() 
+        setdata = (name, hp) 
+        d.execute("INSERT INTO users VALUES (?, ?)", setdata) 
+        db2.commit() 
+    except Exception as e: 
+        print('db2 error:', e) 
+    finally: 
+        db2.close()
+
 #users 테이블 생성 함수
 def create_table(): 
     try:

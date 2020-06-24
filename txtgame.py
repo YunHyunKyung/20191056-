@@ -1,10 +1,10 @@
 import json
 
-def set_user(name):
+def set_user(name, hp=100):
     user = {
         "name" : name,
         "level" : 1,
-        "hp" : 100,
+        "hp" : hp,
         "items" : ["에리디봉","뉴리디봉","또리디봉"],
         "skill" : ["이수만 펀치", "김영민 핵펀치", "유영진 피하기"]
     }
