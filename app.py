@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.secret_key = b'aaa!111/'
 hp = 100
 gname =""
+result1 = 0
 
 #시작 화면
 @app.route('/')
@@ -66,13 +67,6 @@ def logout():
         <script> alert("로그아웃 되었습니다."); 
         location.href="/login" 
         </script>''' 
-    
-# 로그인 사용자만 접근 가능으로 만들면 
-#@app.route('/form') 
-#def form(): 
-#    if 'users' in session: 
-#        return render_template('getinfo.html') 
-#    return redirect(url_for('login'))
 
 @app.route('/getinfo') 
 def getinfo(): 
@@ -84,37 +78,6 @@ def getinfo():
         <script> alert("로그인 후 이용하세요"); 
         location.href="/login" 
         </script>'''
-
-#값 입력받기, 저장하기
-#@app.route('/method', methods=['GET', 'POST']) 
-#def method(): 
-#    if request.method == 'GET': 
-#        # args_dict = request.args.to_dict() 
-#        # print(args_dict) 
-#        id = request.args["id"]
-#        pw = request.args["pw"] 
-#        name = request.args.get("name") 
-#        return "GET으로 전달된 데이터({}, {}, {})".format(id, pw, name) 
-#        
-#    else: 
-#        id = request.form["id"]
-#        pw = request.form["pw"] 
-#        name = request.form["name"] 
-#        #with open("static/save.txt","w", encoding='utf-8') as f: 
-#        #    f.write("%s,%s,%s" % (id, pw, name)) 
-#        database.insert_data(id, pw, name)
-#        return "POST로 전달된 데이터. 아이디 : {}, 비밀번호 : {} 이름 : {}".format(id, pw, name)
-
-#입력받은 값 출력하기
-#@app.route('/getinfo') 
-#def getinfo(): 
-    # 파일 입력
-    #with open("static/save.txt", "r", encoding='utf-8') as file: 
-    #    student = file.read().split(',') # 쉼표로 잘라서 student 에 배열로 저장 
-#    ret = database.select_all()
-#    print(ret)
-#    return render_template('getinfo.html', data=ret)
-    #return '아이디 : {}, 비밀번호 : {} 이름 : {}'.format(users[0], users[1], users[2])
 
 #txt게임
 @app.route('/gamestart', methods=['GET', 'POST'])
@@ -139,21 +102,10 @@ def gamestart():
 def game(): 
     return render_template('game.html')
 
-#@app.route('/gamestart')
-#def gamestart():
-#    with open("static/save.txt", "r", encoding='utf-8') as f: 
-#        data = f.read() 
-#        user = json.loads(data) 
-#    print(type(user)) 
-#    print(user)
-#    print(user['items'])
-#    return"{}이 {}을 사용했습니다.".format(user["name"], user["items"][0])
-
 @app.route('/input/<int:num>')
 def input_num(num):
     global hp
     if num == 1:
-        #user = txtgame.set_user(gname,hp -5)
         hp = hp-5
         return ''' 
         <script> alert("당신은 이수만의 ATM이 되었습니다. HP -5");
@@ -285,16 +237,22 @@ def input3_num(num3):
         hp = hp -100
         return '''
         <script> alert("바보같은 선택을 하였습니다. HP -100"); 
-        location.href="/result" 
+        location.href="/result"
         </script>'''
 
-@app.route('/result')
+#게임 결과
+@app.route('/result', methods=['GET', 'POST'])
 def result():
-    global gname,hp
-    user = { "name" : gname , "hp" : hp}
-    return render_template('gameresult.html', data = user)
+    global gname,hp,result1
+    if(hp>10000):
+        result1 = 1
+        return render_template('gameresult.html', result1 = result1)
+    if(0<hp<10000):
+        result1 = 2
+        return render_template('gameresult.html', result1 = result1)
+    if(hp<=0):
+        result1 = 3
+        return render_template('gameresult.html', result1 = result1)
 
 if __name__ == '__main__': 
-#    with app.test_request_context(): 
-#        print(url_for('daum'))
     app.run(debug=True)

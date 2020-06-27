@@ -1,5 +1,5 @@
 {
-    "name": "yun",
+    "name": "에이",
     "level": 1,
     "hp": 100,
     "items": [
