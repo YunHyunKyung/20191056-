@@ -6,5 +6,15 @@
 {% block content %} 
 
     <h2>GAME RESULT</h2> 
+    {{ data.name }}님의 현재 HP : {{ data.hp }}<br><br><br>
+    {% if 'result1' == 1 %}
+    당신은 엑소와 함께 행복한 덕질 라이프를 보내게 됩니다.
+    {% endif %}
+    {% if 'result1' == 2 %}
+    머글이군요. 그냥 지나가세요.
+    {% endif %}
+    {% if 'result1' == 3 %}
+    사형
+    {% endif %}
     
 {% endblock %}

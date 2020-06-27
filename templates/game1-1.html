@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+{% block title %}게임{% endblock %} 
+{% block head %} 
+    {{ super() }} 
+{% endblock %} 
+{% block content %} 
+
+    <h2>GAME</h2> 
+    {{ data.name }}님의 현재 HP : {{ data.hp }}<br><br><br>
+    길을 가다가 이수만을 만났습니다.<br><br>
+    <a href={{ url_for('input10_num', num10=1) }}>1. 이수만 펀치 </a> <br>
+    <a href={{ url_for('input10_num', num10=2) }}>2. 김영민 핵펀치 </a><br>
+    <a href={{ url_for('input10_num', num10=3) }}>3. 유영진 피하기 </a><br>
+    
+{% endblock %}

@@ -19,3 +19,11 @@ def save_game(filename, user) :
         print("%s:%s" % (key, user[key]))
         f.write("%s:%s\n" % (key, user[key]))
     f.close()
+
+def result1(hp,result1):
+    if(hp>=10000):
+        result1 = 1
+    if(hp<10000):
+        result1 = 2
+    if(hp<=0):
+        result1 = 3

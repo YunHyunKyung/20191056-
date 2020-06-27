@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+{% block title %}게임{% endblock %} 
+{% block head %} 
+    {{ super() }} 
+{% endblock %} 
+{% block content %} 
+
+    <h2>GAME</h2> 
+    {{ data.name }}님의 현재 HP : {{ data.hp }}<br><br><br>
+    집 앞에서 엑소를 만났습니다.<br><br>
+    <a href={{ url_for('input11_num', num11=1) }}>1. 에리디봉 </a> <br>
+    <a href={{ url_for('input11_num', num11=2) }}>2. 뉴리디봉 </a><br>
+    <a href={{ url_for('input11_num', num11=3) }}>3. 또리디봉 </a><br>
+    
+{% endblock %}

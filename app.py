@@ -3,7 +3,6 @@ import txtgame
 import json
 import database 
 import glob
-import random
 app = Flask(__name__)
 app.secret_key = b'aaa!111/'
 hp = 100
@@ -173,11 +172,35 @@ def input_num(num):
         location.href="/game2" 
         </script>'''
     elif num == 4:
-        with open("static/save.txt", "r", encoding='utf-8') as f: 
-            data = f.read() 
-            user = json.loads(data) 
-            print(user['skill'])
-        return"{}이 {}을 사용했습니다.".format(user["name"], user["skill"][0])
+        return redirect(url_for('game11'))
+
+@app.route('/game11')
+def game11():
+    global gname,hp
+    user = { "name" : gname , "hp" : hp }
+    return render_template('game1-1.html',data = user)
+
+@app.route('/input10/<int:num10>')
+def input10_num(num10):
+    global hp
+    if num10 == 1:
+        hp = hp-0
+        return ''' 
+        <script> alert("이수만에게 피해를 입혔습니다. 이수만 처치");
+        location.href="/game2"
+        </script>'''
+    elif num10 == 2:
+        hp = hp-10
+        return ''' 
+        <script> alert("이수만에게 역습당했습니다. HP -10"); 
+        location.href="/game2" 
+        </script>'''
+    elif num10 == 3:
+        hp = hp-0
+        return '''
+        <script> alert("이수만을 치료합니다. HP -0"); 
+        location.href="/game2" 
+        </script>'''
 
 @app.route('/game2') 
 def game2(): 
@@ -207,14 +230,35 @@ def input2_num(num2):
         location.href="/game3" 
         </script>'''
     elif num2 == 4:
-        with open("static/save.txt", "r", encoding='utf-8') as f: 
-            data = f.read() 
-            user = json.loads(data) 
-            print(user['items'])
-        return '''
-        <script> alert({}이 {}을 사용했습니다."); 
+        return redirect(url_for('game12'))
+
+@app.route('/game12')
+def game12():
+    global gname,hp
+    user = { "name" : gname , "hp" : hp }
+    return render_template('game2-1.html',data = user)
+
+@app.route('/input11/<int:num11>')
+def input11_num(num11):
+    global hp
+    if num11 == 1:
+        hp = hp+100
+        return ''' 
+        <script> alert("엑소를 응원합니다. HP +100");
+        location.href="/game3"
+        </script>'''
+    elif num11 == 2:
+        hp = hp+1000
+        return ''' 
+        <script> alert("엑소에게 몬스터 춤을 보여줍니다. HP +1000"); 
         location.href="/game3" 
-        </script>'''.format(user["name"], user["items"][0])
+        </script>'''
+    elif num11 == 3:
+        hp = hp+10000
+        return '''
+        <script> alert("엑소에게 파워를 불러줍니다. HP +10000"); 
+        location.href="/game3" 
+        </script>'''
 
 @app.route('/game3') 
 def game3(): 
@@ -246,7 +290,9 @@ def input3_num(num3):
 
 @app.route('/result')
 def result():
-    return render_template('gameresult.html')
+    global gname,hp
+    user = { "name" : gname , "hp" : hp}
+    return render_template('gameresult.html', data = user)
 
 if __name__ == '__main__': 
 #    with app.test_request_context(): 
